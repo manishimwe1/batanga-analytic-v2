@@ -1,42 +1,129 @@
+"use client"
+
+import { motion, useInView } from "framer-motion"
+import { useRef, useEffect, useState } from "react"
+
 const stats = [
-    { value: "250+", label: "Enterprise Clients", description: "Trusted by industry leaders globally" },
-    { value: "1,500+", label: "Projects Delivered", description: "Successful implementations worldwide" },
-    { value: "50+", label: "Expert Team", description: "Certified professionals and specialists" },
-    { value: "99.9%", label: "Service Uptime", description: "Reliable, always-on performance" },
-  ]
-  
-  export function StatsSection() {
-    return (
-      <section className="py-24 bg-gradient-to-br from-slate-900 via-slate-800 to-indigo-900 relative overflow-hidden">
-        {/* Background decoration */}
-        <div className="absolute inset-0">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/10 rounded-full blur-3xl"></div>
-        </div>
-  
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Trusted by Industry Leaders
-              <span className="block text-2xl md:text-3xl font-normal text-slate-300 mt-2">Across Africa and Beyond</span>
-            </h2>
-          </div>
-  
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {stats.map((stat, index) => (
-              <div key={index} className="text-center group">
-                <div className="bg-white/5 backdrop-blur-sm rounded-3xl p-8 border border-white/10 hover:bg-white/10 transition-all duration-300 hover:scale-105">
-                  <div className="text-5xl md:text-6xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent mb-4">
-                    {stat.value}
-                  </div>
-                  <div className="text-xl font-semibold text-white mb-2">{stat.label}</div>
-                  <div className="text-sm text-slate-400 leading-relaxed">{stat.description}</div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-    )
-  }
-  
+  { value: 250, label: "Active Clients", suffix: "+" },
+  { value: 1500, label: "Projects Completed", suffix: "+" },
+  { value: 50, label: "Expert Analysts", suffix: "" },
+  { value: 5, label: "Global Offices", suffix: "" },
+]
+
+function AnimatedCounter({ value, suffix }: { value: number; suffix: string }) {
+  const [count, setCount] = useState(0)
+  const ref = useRef(null)
+  const isInView = useInView(ref, { once: true })
+
+  useEffect(() => {
+    if (isInView) {
+      const duration = 2000 // 2 seconds
+      const steps = 60
+      const increment = value / steps
+      let current = 0
+
+      const timer = setInterval(() => {
+        current += increment
+        if (current >= value) {
+          setCount(value)
+          clearInterval(timer)
+        } else {
+          setCount(Math.floor(current))
+        }
+      }, duration / steps)
+
+      return () => clearInterval(timer)
+    }
+  }, [isInView, value])
+
+  return (
+    <span ref={ref}>
+      {count}
+      {suffix}
+    </span>
+  )
+}
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: {
+      staggerChildren: 0.2,
+      delayChildren: 0.1,
+    },
+  },
+}
+
+const itemVariants = {
+  hidden: { opacity: 0, y: 30, scale: 0.8 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    transition: {
+      duration: 0.6,
+      ease: "easeOut",
+    },
+  },
+}
+
+export function StatsSection() {
+  return (
+    <section className="bg-teal-700 py-12 text-white relative overflow-hidden">
+      {/* Background animation */}
+      <motion.div
+        className="absolute inset-0 bg-gradient-to-r from-teal-600/50 to-cyan-500/50"
+        animate={{
+          backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
+        }}
+        transition={{
+          duration: 10,
+          repeat: Number.POSITIVE_INFINITY,
+          ease: "linear",
+        }}
+      />
+
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center"
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+        >
+          {stats.map((stat, index) => (
+            <motion.div
+              key={index}
+              variants={itemVariants}
+              whileHover={{
+                scale: 1.05,
+                transition: { duration: 0.2 },
+              }}
+              className="cursor-default"
+            >
+              <motion.div
+                className="text-4xl md:text-5xl font-bold mb-2"
+                initial={{ scale: 0.5 }}
+                whileInView={{ scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 }}
+              >
+                <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+              </motion.div>
+              <motion.div
+                className="text-lg opacity-90"
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 0.9 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
+              >
+                {stat.label}
+              </motion.div>
+            </motion.div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+  )
+}

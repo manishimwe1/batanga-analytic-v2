@@ -1,21 +1,23 @@
+import { Navigation } from "@/components/navigation"
 import { HeroSection } from "@/components/hero-section"
-import { ServicesSection } from "@/components/services-section"
+import { ServicesGrid } from "@/components/services-grid"
+import { AboutSection } from "@/components/about-section"
 import { StatsSection } from "@/components/stats-section"
-import { TestimonialsSection } from "@/components/testimonials-section"
+import { PrimaryServices } from "@/components/primary-services"
+import { DataAnalyticsSection } from "@/components/data-analytics-section"
 import { CTASection } from "@/components/cta-section"
 import { Footer } from "@/components/footer"
-import { Navigation } from "@/components/navigation"
-import { AboutSection } from "@/components/about-section"
 
 export default function HomePage() {
   return (
-    <div className="min-h-screen bg-slate-50">
+    <div className="min-h-screen bg-white">
       <Navigation />
       <HeroSection />
-      <ServicesSection />
+      <ServicesGrid />
       <AboutSection />
       <StatsSection />
-      <TestimonialsSection />
+      <PrimaryServices />
+      <DataAnalyticsSection />
       <CTASection />
       <Footer />
     </div>

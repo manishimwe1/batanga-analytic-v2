@@ -1,10 +1,10 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
-import { TechVisualization } from "@/components/tech-visualization"
+import { AnalyticsDashboard } from "@/components/analytics-dashboard"
 import { motion } from "framer-motion"
 
-export function AboutSection() {
+export function DataAnalyticsSection() {
   return (
     <section className="py-16 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -22,41 +22,30 @@ export function AboutSection() {
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              Who We Are
+              Data Analytics Solutions
             </motion.h2>
-
-            <motion.p
-              className="text-gray-600 mb-6 leading-relaxed"
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 }}
-            >
-              Batanga Analytics is a leading provider of data analytics and cybersecurity solutions. We help
-              organizations transform their data into actionable insights while ensuring top-tier protection against
-              cyber threats.
-            </motion.p>
 
             <motion.p
               className="text-gray-600 mb-8 leading-relaxed"
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.4 }}
+              transition={{ duration: 0.6, delay: 0.3 }}
             >
-              Our team of experts combines deep industry knowledge with cutting-edge technology to deliver customized
-              solutions that address your specific business challenges.
+              Our comprehensive data analytics solutions help businesses extract maximum value from their data assets.
+              From data collection and processing to advanced analytics and visualization, we provide end‑to‑end
+              services tailored to your specific needs.
             </motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.5 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
             >
-              <Button className="bg-teal-600 hover:bg-teal-700 text-white">Learn More About Us</Button>
+              <Button className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold">Learn More</Button>
             </motion.div>
           </motion.div>
 
@@ -67,7 +56,7 @@ export function AboutSection() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
           >
-            <TechVisualization />
+            <AnalyticsDashboard />
           </motion.div>
         </div>
       </div>
