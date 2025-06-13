@@ -9,11 +9,15 @@ import FeatureSections from "@/components/FeatureSections";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import { HeroSection } from "@/components/hero-section";
 import Footer from "@/components/footer";
-import { getHeroSection } from "@/sanity/getContent/homePage";
+import { getAboutUs, getHeroSection, getStatCard } from "@/sanity/getContent/homePage";
 
 export default async function Home() {
   const HeroSectionContent = await getHeroSection()
   console.log(HeroSectionContent);
+  const statCard = await getStatCard()
+  console.log(statCard);
+  const aboutUs = await getAboutUs()
+  console.log(aboutUs);
   
   return (
     <div className="flex min-h-screen flex-col ">
@@ -23,10 +27,10 @@ export default async function Home() {
         <HeroSection HeroSectionContent={HeroSectionContent} />
 
         {/* Stats Section */}
-        <StatCard />
+        <StatCard statCardContent={statCard} />
 
         {/* About Us Section */}
-        <AboutUsSection />
+        <AboutUsSection aboutUs={aboutUs!} />
 
         {/* Services Section */}
         <ServicesSection />

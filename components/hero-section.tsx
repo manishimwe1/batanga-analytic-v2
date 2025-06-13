@@ -2,11 +2,16 @@
 "use client"
 
 import { Button } from "@/components/ui/button"
+import { urlFor } from "@/sanity/lib/image"
+import { HeroSectionType } from "@/types"
+import { ImageUrlBuilder } from "@sanity/image-url/lib/types/builder"
+
 import { motion } from "framer-motion"
 import { BarChart3, Loader2 } from "lucide-react"
 import { SanityDocument } from "next-sanity"
+import Image from "next/image"
 
-export function HeroSection({HeroSectionContent}:{HeroSectionContent:SanityDocument[] | undefined}) {
+export function HeroSection({HeroSectionContent}:{HeroSectionContent:HeroSectionType | undefined}) {
   return (
     <>
     {HeroSectionContent ? (
@@ -25,7 +30,7 @@ export function HeroSection({HeroSectionContent}:{HeroSectionContent:SanityDocum
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
             >
-              Analytics & Cybersecurity Solutions 2025
+              {HeroSectionContent.title}
             </motion.h1>
             <motion.p
               className="max-w-[600px] text-white md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed text-center"
@@ -33,7 +38,7 @@ export function HeroSection({HeroSectionContent}:{HeroSectionContent:SanityDocum
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.4 }}
             >
-              Driving Business Decisions with Data & Advanced Cybersecurity Protection
+              {HeroSectionContent.subTitle}
             </motion.p>
             <motion.div
               className="flex flex-col gap-2 min-[400px]:flex-row"
@@ -64,13 +69,12 @@ export function HeroSection({HeroSectionContent}:{HeroSectionContent:SanityDocum
               whileHover={{ scale: 1.05, rotate: 2 }}
               transition={{ type: "spring", stiffness: 300, damping: 10 }}
             >
-              <div className="text-center space-y-4">
+              <div className="text-center space-y-4 shadow-md shadow-blue-400 cursor-pointer w-full h-[400px] overflow-hidden rounded-xl relative">
                 <motion.div
-                  className="w-16 h-16 mx-auto bg-white/20 rounded-full flex items-center justify-center"
-                  animate={{ rotate: 360 }}
-                  transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+                  className="w-full  mx-auto bg-white/20  flex items-center justify-center  "
+                  
                 >
-                  <BarChart3 className="h-8 w-8 text-white" />
+                  <Image src={urlFor(HeroSectionContent.mainImage.asset).url()} alt="image" fill priority className="object-cover"/>
                 </motion.div>
                 <motion.p
                   className="text-white/80 text-sm"
@@ -78,7 +82,6 @@ export function HeroSection({HeroSectionContent}:{HeroSectionContent:SanityDocum
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1 }}
                 >
-                  Data Visualization
                 </motion.p>
               </div>
             </motion.div>

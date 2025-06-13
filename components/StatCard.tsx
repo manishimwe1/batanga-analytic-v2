@@ -1,9 +1,10 @@
 'use client'
 
+import { StatCardType } from "@/types";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 
-const StatCard = () => {
+const StatCard = ({statCardContent}:{statCardContent:StatCardType[] | undefined}) => {
   const staggerContainer = {
     initial: {},
     animate: {
@@ -29,12 +30,7 @@ const StatCard = () => {
           initial="initial"
           animate={statsInView ? "animate" : "initial"}
         >
-          {[
-            { number: "250+", label: "Active Clients" },
-            { number: "1500+", label: "Projects Completed" },
-            { number: "50", label: "Expert Analysts" },
-            { number: "5", label: "Global Offices" },
-          ].map((stat, index) => (
+          {statCardContent?.map((stat, index) => (
             <motion.div
               key={index}
               className="space-y-2"
@@ -55,7 +51,7 @@ const StatCard = () => {
               >
                 {stat.number}
               </motion.h2>
-              <p className="text-sm text-muted-foreground">{stat.label}</p>
+              <p className="text-sm text-muted-foreground">{stat.title}</p>
             </motion.div>
           ))}
         </motion.div>

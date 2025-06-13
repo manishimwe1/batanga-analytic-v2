@@ -4,8 +4,12 @@ import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Button } from "./ui/button";
 import { Shield } from "lucide-react";
+import { AboutUs } from "@/types";
+import { urlFor } from "@/sanity/lib/image";
+import Image from "next/image";
 
-const AboutUsSection = () => {
+const AboutUsSection = ({aboutUs}:{aboutUs:AboutUs}) => {
+  const {title,subTitle,addititionalContent,image} = aboutUs
   const aboutRef = useRef(null)
   const aboutInView = useInView(aboutRef, { once: true })
 
@@ -43,21 +47,18 @@ const AboutUsSection = () => {
                   className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl text-primary"
                   variants={fadeInUp}
                 >
-                  Who We Are
+                 {title}
                 </motion.h2>
                 <motion.p
                   className="max-w-[600px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed"
                   variants={fadeInUp}
                 >
-                  Batanga Analytics is a leading provider of data analytics and cybersecurity solutions. We help
-                  organizations transform their data into actionable insights while ensuring top-tier protection against
-                  cyber threats.
+                  {subTitle}
                 </motion.p>
                 <motion.p className="max-w-[600px] text-muted-foreground" variants={fadeInUp}>
-                  Our team of experts combines deep industry knowledge with cutting-edge technology to deliver
-                  customized solutions that address your specific business challenges.
+                  {addititionalContent}
                 </motion.p>
-                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="mt-5">
                   <Button className="bg-primary hover:bg-primary/90">Learn More About Us</Button>
                 </motion.div>
               </motion.div>
@@ -72,7 +73,11 @@ const AboutUsSection = () => {
                   whileHover={{ scale: 1.05, rotate: 1 }}
                   transition={{ type: "spring", stiffness: 300, damping: 10 }}
                 >
-                  <div className="text-center space-y-4">
+                  {
+                    image ? (
+                      <Image src={urlFor(image.asset).url()} alt={title} fill className="w-full h-full object-cover rounded-lg shadow-lg" />
+                    ) : (
+                      <div className="text-center space-y-4">
                     <motion.div
                       className="w-20 h-20 mx-auto bg-primary/20 rounded-full flex items-center justify-center"
                       animate={{ scale: [1, 1.1, 1] }}
@@ -82,6 +87,9 @@ const AboutUsSection = () => {
                     </motion.div>
                     <p className="text-primary font-medium">Secure Digital Solutions</p>
                   </div>
+                    )
+                  }
+                  
                 </motion.div>
               </motion.div>
             </div>

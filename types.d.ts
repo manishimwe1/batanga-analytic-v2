@@ -1,4 +1,4 @@
-export interface HeroSection {
+export interface HeroSectionType {
     _id: string
     _createdAt: string
     _type: 'heroSection'
@@ -14,3 +14,25 @@ export interface HeroSection {
     }
   }
   
+export interface StatCardType {
+    _id: string
+    _createdAt: string
+    title: string
+    number: number
+}
+
+export interface AboutUs{
+    _id: string
+    _createdAt: string
+    title: string
+    subTitle: string;
+    addititionalContent: string;
+    image: {
+        _type: 'image'
+        alt: string
+        asset: {
+          _ref: string
+          _type: 'reference'
+        }
+      }
+}
