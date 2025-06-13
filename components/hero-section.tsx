@@ -1,76 +1,97 @@
+
 "use client"
 
 import { Button } from "@/components/ui/button"
 import { motion } from "framer-motion"
+import { BarChart3, Loader2 } from "lucide-react"
+import { SanityDocument } from "next-sanity"
 
-export function HeroSection() {
+export function HeroSection({HeroSectionContent}:{HeroSectionContent:SanityDocument[] | undefined}) {
   return (
-    <section className="bg-gradient-to-r from-teal-600 to-cyan-500 text-white py-16 relative overflow-hidden">
-      {/* Animated background elements */}
-      <div className="absolute inset-0">
-        <motion.div
-          className="absolute top-1/4 left-1/4 w-72 h-72 bg-indigo-500/10 rounded-full blur-3xl"
-          animate={{
-            scale: [1, 1.2, 1],
-            opacity: [0.3, 0.6, 0.3],
-          }}
-          transition={{
-            duration: 4,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-          }}
-        />
-        <motion.div
-          className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl"
-          animate={{
-            scale: [1.2, 1, 1.2],
-            opacity: [0.4, 0.7, 0.4],
-          }}
-          transition={{
-            duration: 5,
-            repeat: Number.POSITIVE_INFINITY,
-            ease: "easeInOut",
-            delay: 1,
-          }}
-        />
-      </div>
-
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center md:text-left">
-          <motion.h1
-            className="text-4xl md:text-5xl font-bold mb-4 leading-tight"
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
+    <>
+    {HeroSectionContent ? (
+      <section className="w-full bg-gradient-to-r from-primary/90 to-cyan-600 py-12 md:py-24 lg:py-32 overflow-hidden">
+      <div className="container px-4 md:px-6">
+        <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center ">
+          <motion.div
+            className="space-y-4  flex flex-col items-center justify-center md:justify-start"
+            initial={{ opacity: 0, x: -100 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
           >
-            Analytics & Cybersecurity Solutions 2025
-          </motion.h1>
-
-          <motion.p
-            className="text-xl md:text-2xl mb-8 max-w-3xl"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
-          >
-            Driving Business Decisions with Data & Advanced Cybersecurity Protection
-          </motion.p>
-
+            <motion.h1
+              className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none text-white text-center"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              Analytics & Cybersecurity Solutions 2025
+            </motion.h1>
+            <motion.p
+              className="max-w-[600px] text-white md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed text-center"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              Driving Business Decisions with Data & Advanced Cybersecurity Protection
+            </motion.p>
+            <motion.div
+              className="flex flex-col gap-2 min-[400px]:flex-row"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+            >
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="">
+                <Button size="lg" className="bg-yellow-500 text-black hover:bg-yellow-400">
+                  Contact Us
+                </Button>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button size="lg" variant="outline" className="text-white border-white bg-transparent hover:bg-white/10">
+                  Learn More
+                </Button>
+              </motion.div>
+            </motion.div>
+          </motion.div>
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6, delay: 0.4, ease: "easeOut" }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+            className="flex items-center justify-center"
+            initial={{ opacity: 0, x: 100, rotate: -10 }}
+            animate={{ opacity: 1, x: 0, rotate: 0 }}
+            transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
           >
-            <Button size="lg" className="bg-yellow-500 hover:bg-yellow-600 text-black font-semibold px-8 py-3" asChild>
-              <a href="mailto:batangaanalytics@gmail.com">Contact Us</a>
-            </Button>
+            <motion.div
+              className="relative w-full max-w-md h-64 bg-gradient-to-br from-white/10 to-white/5 rounded-lg backdrop-blur-sm border border-white/20 flex items-center justify-center"
+              whileHover={{ scale: 1.05, rotate: 2 }}
+              transition={{ type: "spring", stiffness: 300, damping: 10 }}
+            >
+              <div className="text-center space-y-4">
+                <motion.div
+                  className="w-16 h-16 mx-auto bg-white/20 rounded-full flex items-center justify-center"
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 20, repeat: Number.POSITIVE_INFINITY, ease: "linear" }}
+                >
+                  <BarChart3 className="h-8 w-8 text-white" />
+                </motion.div>
+                <motion.p
+                  className="text-white/80 text-sm"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1 }}
+                >
+                  Data Visualization
+                </motion.p>
+              </div>
+            </motion.div>
           </motion.div>
         </div>
       </div>
-
-      {/* Bottom gradient */}
-      <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-slate-50 to-transparent"></div>
     </section>
+    ):(
+      <div>
+        <Loader2 className="animate-spin"/>
+      </div>
+    )}
+    </>
   )
 }
+
