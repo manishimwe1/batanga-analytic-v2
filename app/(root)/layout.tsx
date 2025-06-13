@@ -3,6 +3,7 @@ import "../globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/footer";
 import NextTopLoader from 'nextjs-toploader';
+import { SanityLive } from "@/sanity/lib/live";
 
 export const metadata: Metadata = {
   title: "batanga analytics",
@@ -23,6 +24,7 @@ export default function RootLayout({
         <main>{children}</main>
         <Footer />
       </body>
+      <SanityLive/>
     </html>
   );
 }
