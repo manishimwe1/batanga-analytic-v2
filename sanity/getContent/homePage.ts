@@ -4,11 +4,12 @@ import { client } from "../lib/client";
 import { sanityFetch } from "../lib/live";
 import { AboutUs, HeroSectionType, StatCardType } from "@/types";
 
+const options = { next: { revalidate: 5 } }
 export const getAboutUs = async()=>{
     try {
         
         const data = await client.fetch(
-            groq`*[_type == "aboutUs"]|order(_createdAt  desc)[0]{_id, title,subTitle,addititionalContent,image,_createdAt }`, 
+            groq`*[_type == "aboutUs"]|order(_createdAt  desc)[0]{_id, title,subTitle,addititionalContent,image,_createdAt }`,{},options 
 
         );
         console.log(data);
@@ -24,7 +25,7 @@ export const getStatCard = async()=>{
     try {
         
         const data = await client.fetch(
-            groq`*[_type == "statCard"]|order(_createdAt  desc){_id, title,number,_createdAt }`,
+            groq`*[_type == "statCard"]|order(_createdAt  desc){_id, title,number,_createdAt }`,{},options
 
         );
         console.log(data);
@@ -38,13 +39,10 @@ export const getStatCard = async()=>{
 }
 export const getHeroSection = async()=>{
     try {
-        const queryOptions = {
-            query: groq`*[_type == "heroSection"]|order(_createdAt  desc)[0]{_id, title,subTitle,mainImage,_createdAt }`,
-            tags: ["Homepage"],
-        };
-    
+        
         const data = await client.fetch(
-            groq`*[_type == "heroSection"]|order(_createdAt  desc)[0]{_id, title,subTitle,mainImage,_createdAt }`,
+            groq`*[_type == "heroSection"]|order(_createdAt  desc)[0]{_id, title,subTitle,mainImage,_createdAt }`,{},
+            options
         );
         console.log(data);
         const Resultdata:HeroSectionType = data

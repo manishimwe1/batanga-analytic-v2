@@ -17,8 +17,8 @@ export default function RootLayout({
     <html lang="en">
       <body className="w-full h-full flex flex-col">
         <main>{children}</main>
+      {/* <SanityLive/> */}
       </body>
-      <SanityLive/>
 
     </html>
   );
