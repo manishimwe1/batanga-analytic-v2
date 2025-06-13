@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "../globals.css";
+import { SanityLive } from "@/sanity/lib/live";
 
 export const metadata: Metadata = {
   title: "batanga analytics",
@@ -17,6 +18,8 @@ export default function RootLayout({
       <body className="w-full h-full flex flex-col">
         <main>{children}</main>
       </body>
+      <SanityLive/>
+
     </html>
   );
 }
