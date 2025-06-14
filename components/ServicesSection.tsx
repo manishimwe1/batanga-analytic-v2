@@ -11,6 +11,8 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
+import Link from "next/link";
+import { ServicesType } from "@/types";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
@@ -32,7 +34,7 @@ const staggerContainer = {
   },
 };
 
-const ServicesSection = () => {
+const ServicesSection = ({services}:{services:ServicesType[] | undefined}) => {
   const servicesRef = useRef(null);
   const servicesInView = useInView(servicesRef, { once: true });
   return (
@@ -69,43 +71,24 @@ const ServicesSection = () => {
           initial="initial"
           animate={servicesInView ? "animate" : "initial"}
         >
-          {[
-            {
-              icon: Database,
-              title: "Advanced Data Analytics",
-              description:
-                "Transform raw data into meaningful insights that drive strategic decision-making and operational efficiency.",
-            },
-            {
-              icon: BarChart3,
-              title: "Performance Tracking",
-              description:
-                "Monitor key performance indicators in real-time to optimize business processes and identify opportunities.",
-            },
-            {
-              icon: Shield,
-              title: "AI Solutions",
-              description:
-                "Leverage machine learning algorithms to automate processes, predict trends, and enhance customer experiences.",
-            },
-          ].map((service, index) => (
+          {services?.map((service, index) => (
             <motion.div key={index} variants={scaleIn}>
-              <Card className="transition-all hover:shadow-lg border-l-4 border-l-yellow-500 h-full group">
+              <Card className={`transition-all hover:shadow-lg border-l-4 cursor-pointer  h-full group ${index === 1 ? 'border-l-blue-500' :'border-l-yellow-500'}`}>
                 <CardHeader className="pb-2">
-                  <motion.div
+                  {/* <motion.div
                     className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4"
                     whileHover={{ rotate: 360, scale: 1.1 }}
                     transition={{ duration: 0.5 }}
                   >
                     <service.icon className="h-6 w-6 text-primary" />
-                  </motion.div>
+                  </motion.div> */}
                   <CardTitle className="group-hover:text-primary transition-colors">
-                    {service.title}
+                    {service.cardTitle}
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-sm text-muted-foreground">
-                    {service.description}
+                    {service.cardDescription}
                   </p>
                 </CardContent>
                 <CardFooter>
@@ -116,9 +99,9 @@ const ServicesSection = () => {
                   >
                     <Button
                       variant="ghost"
-                      className="w-full justify-between group-hover:text-primary"
+                      className="w-full justify-between group-hover:text-primary capitalize"
                     >
-                      Learn More <ChevronRight className="h-4 w-4" />
+                      {service.buttonText} <ChevronRight className="h-4 w-4" />
                     </Button>
                   </motion.div>
                 </CardFooter>
@@ -136,7 +119,9 @@ const ServicesSection = () => {
         >
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Button className="bg-cyan-600 hover:bg-cyan-700">
+            <Link href={'/services'}>
               View All Services
+            </Link>
             </Button>
           </motion.div>
         </motion.div>

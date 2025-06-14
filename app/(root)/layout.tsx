@@ -18,7 +18,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className="w-full h-full flex flex-col">
+      <body className="w-full h-full flex flex-col overflow-x-hidden">
       <NextTopLoader />
         <Header />
         <main>{children}</main>

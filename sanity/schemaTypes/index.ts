@@ -1,10 +1,12 @@
 import { type SchemaTypeDefinition } from 'sanity'
 
-import {blockContentType} from './blockContentType'
+import {blockContentType} from './blockType'
 import {statCardType} from './statCardType'
 import {postType} from './postType'
 import {aboutType} from './aboutType'
+import { servicesType } from './servicesCardType'
+import { feedbackType } from './feedbackType'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [blockContentType, statCardType, postType, aboutType],
+  types: [servicesType,feedbackType, statCardType, postType, aboutType],
 }

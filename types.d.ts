@@ -21,6 +21,14 @@ export interface StatCardType {
     number: number
 }
 
+export interface ServicesType {
+    _id: string
+    _createdAt: string
+    cardTitle: string
+    cardDescription: string
+    buttonText: string
+}
+
 export interface AboutUs{
     _id: string
     _createdAt: string
