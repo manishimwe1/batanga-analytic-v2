@@ -2,6 +2,7 @@
 import { SectionTitle } from "@/components/ui/section-title";
 import { Button } from "@/components/ui/button";
 import { IndustryCard } from "@/components/industry-card";
+import Link from "next/link";
 
 export default function Industries() {
   return (
@@ -37,9 +38,8 @@ export default function Industries() {
                 </ul>
                 <Button
                   className="mt-4 bg-batanga-oceanblue hover:bg-batanga-darkblue"
-                  onClick={() => window.location.href = "/contact"}
                 >
-                  Learn More
+                  <Link href='/contact'>Learn More</Link>
                 </Button>
               </div>
             </div>
