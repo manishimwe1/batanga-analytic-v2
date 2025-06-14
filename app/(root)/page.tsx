@@ -9,7 +9,7 @@ import FeatureSections from "@/components/FeatureSections";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import { HeroSection } from "@/components/hero-section";
 import Footer from "@/components/footer";
-import { getAboutUs, getHeroSection, getServicesCard, getStatCard } from "@/sanity/getContent/homePage";
+import { getAboutUs, getFeedback, getHeroSection, getServicesCard, getStatCard } from "@/sanity/getContent/homePage";
 
 export default async function Home() {
   const HeroSectionContent = await getHeroSection()
@@ -19,6 +19,8 @@ export default async function Home() {
   const aboutUs = await getAboutUs()
   const services = await getServicesCard()
   console.log(services);
+  const feedback = await getFeedback()
+  console.log(feedback);
   
   return (
     <div className="flex min-h-screen flex-col ">
@@ -40,7 +42,7 @@ export default async function Home() {
         <FeatureSections />
 
         {/* Testimonials Section */}
-        <TestimonialsSection />
+        <TestimonialsSection feedback={feedback}/>
 
         {/* CTA Section */}
         <CTASection />

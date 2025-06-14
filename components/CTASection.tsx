@@ -44,7 +44,10 @@ const CTASection = () => {
                 animate={{ y: [0, -5, 0] }}
                 transition={{ duration: 2, repeat: Number.POSITIVE_INFINITY, ease: "easeInOut" }}
               >
-                <Button size="lg" className="bg-primary hover:bg-primary/90 text-white">
+                <Button size="lg" className="bg-primary hover:bg-primary/90 text-white"
+                //@ts-ignore
+            onClick={() => window.location = "mailto:batangaanalytics@gmail.com"}
+                >
                   Contact Us Now
                 </Button>
               </motion.div>

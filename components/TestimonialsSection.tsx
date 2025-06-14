@@ -5,6 +5,10 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { useInView,motion } from 'framer-motion'
 import { Award, Shield, Star, Users } from 'lucide-react'
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
+import { FeedbackType } from '@/types'
+import { FeedBackConstant } from '@/constant'
+import { urlFor } from '@/sanity/lib/image'
+import Image from 'next/image'
 
 const fadeInUp = {
     initial: { opacity: 0, y: 60 },
@@ -27,7 +31,7 @@ const fadeInUp = {
     transition: { duration: 0.5, ease: "easeOut" },
   }
 
-const TestimonialsSection = () => {
+const TestimonialsSection = ({feedback}:{feedback:FeedbackType[] | undefined}) => {
   const testimonialsRef = useRef(null)
   const testimonialsInView = useInView(testimonialsRef, { once: true })
 
@@ -74,35 +78,51 @@ const TestimonialsSection = () => {
                     initial="initial"
                     animate={testimonialsInView ? "animate" : "initial"}
                   >
-                    {[
-                      {
-                        icon: Users,
-                        company: "Global Corp",
-                        industry: "Financial Services",
-                        testimonial:
-                          "Batanga Analytics transformed our data infrastructure, resulting in a 40% increase in operational efficiency and significant cost savings. Their cybersecurity solutions have been instrumental in protecting our sensitive financial data.",
-                        role: "CFO",
-                        rating: 5,
-                      },
-                      {
-                        icon: Award,
-                        company: "Tech Innovations",
-                        industry: "Technology",
-                        testimonial:
-                          "The AI solutions provided by Batanga Analytics have revolutionized our product development cycle. We've been able to reduce time-to-market by 30% while improving product quality through data-driven insights.",
-                        role: "CTO",
-                        rating: 5,
-                      },
-                      {
-                        icon: Shield,
-                        company: "HealthCare Plus",
-                        industry: "Healthcare",
-                        testimonial:
-                          "In the healthcare industry, data security is paramount. Batanga Analytics has provided us with robust cybersecurity solutions that ensure our patient data remains protected while allowing us to leverage analytics for improved patient outcomes.",
-                        role: "CISO",
-                        rating: 4,
-                      },
-                    ].map((testimonial, index) => (
+                    {
+                    feedback ? (
+                      feedback.map((item)=>(
+                        <motion.div key={item._id} variants={scaleIn}>
+                        <Card className="relative h-full group hover:shadow-xl transition-all duration-300">
+                          <CardHeader>
+                            <div className="flex items-center gap-4">
+                              <motion.div
+                                className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center relative"
+                                whileHover={{ rotate: 360 }}
+                                transition={{ duration: 0.5 }}
+                              >
+                                <Image src={urlFor(item.userImage).url()} className="rounded-full text-primary object-cover" alt='image'  fill/>
+                              </motion.div>
+                              <div>
+                                <CardTitle className="group-hover:text-primary transition-colors">
+                                  {item.userName}
+                                </CardTitle>
+                                {/* <CardDescription>{testimonial.industry}</CardDescription> */}
+                              </div>
+                            </div>
+                          </CardHeader>
+                          <CardContent>
+                            <p className="text-sm text-muted-foreground">"{item.feedback}"</p>
+                          </CardContent>
+                          <CardFooter className="flex justify-between">
+                            <div className="flex text-yellow-500">
+                              {[...Array(5)].map((_, i) => (
+                                <motion.div
+                                  key={i}
+                                  initial={{ opacity: 0, scale: 0 }}
+                                  animate={{ opacity: 1, scale: 1 }}
+                                  transition={{ delay: i * 0.1 + 0.5 }}
+                                >
+                                  <Star className={`h-4 w-4 ${i < item.numberStar ? "fill-current" : ""}`} />
+                                </motion.div>
+                              ))}
+                            </div>
+                          </CardFooter>
+                        </Card>
+                      </motion.div>
+                      ))
+                    ):(
+                      <>
+                      {FeedBackConstant.map((testimonial, index) => (
                       <motion.div key={index} variants={scaleIn}>
                         <Card className="relative h-full group hover:shadow-xl transition-all duration-300">
                           <CardHeader>
@@ -143,6 +163,9 @@ const TestimonialsSection = () => {
                         </Card>
                       </motion.div>
                     ))}
+                      </>
+                    )
+                    }
                   </motion.div>
                 </TabsContent>
                 {/* Similar structure for other tabs */}

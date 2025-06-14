@@ -16,16 +16,30 @@ export const feedbackType = defineType({
     //   type: 'string',
     // }),
     defineField({
-      name: 'cardTitle',
+      name: 'userName',
       type: 'string',
     }),
     defineField({
-      name: 'cardDescription',
+      name: 'feedback',
       type: 'text',
     }),
     defineField({
-      name: 'buttonText',
-      type: 'string',
+      name: 'numberStar',
+      type: 'number',
+    }),
+    defineField({
+      name: 'userImage',
+      type: 'image',
+      options: {
+        hotspot: true,
+      },
+      fields: [
+        defineField({
+          name: 'alt',
+          type: 'string',
+          title: 'Alternative text',
+        })
+      ]
     }),
     
   ],

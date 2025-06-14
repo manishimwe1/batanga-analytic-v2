@@ -2,10 +2,27 @@
 import { groq, SanityDocument } from "next-sanity";
 import { client } from "../lib/client";
 import { sanityFetch } from "../lib/live";
-import { AboutUs, HeroSectionType, ServicesType, StatCardType } from "@/types";
+import { AboutUs, FeedbackType, HeroSectionType, ServicesType, StatCardType } from "@/types";
 
 const options = { next: { revalidate: 5 } }
 
+export const getFeedback = async()=>{
+    try {
+
+
+
+        const data = await client.fetch(
+            groq`*[_type == "feedback"]|order(_createdAt  desc){_id,userName,feedback,numberStar,userImage}`,{},options 
+
+        );
+        console.log(data);
+        return data as FeedbackType[];
+        
+    } catch (error) {
+        console.log(error,'ERROR IN GETTING HERO SECTION');
+        
+    }
+}
 export const getServicesCard = async()=>{
     try {
         

@@ -29,6 +29,24 @@ export interface ServicesType {
     buttonText: string
 }
 
+export interface FeedbackType {
+    _id: string
+    _createdAt: string
+    userName: string
+    feedback: string
+    numberStar: number
+    userImage: {
+      _type: 'image'
+      alt: string
+      asset: {
+        _ref: string
+        _type: 'reference'
+      }
+    }
+}
+
+
+
 export interface AboutUs{
     _id: string
     _createdAt: string
