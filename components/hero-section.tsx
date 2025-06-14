@@ -9,6 +9,7 @@ import { motion } from "framer-motion";
 import { BarChart3, Loader2 } from "lucide-react";
 import { SanityDocument } from "next-sanity";
 import Image from "next/image";
+import Link from "next/link";
 
 export function HeroSection({
   HeroSectionContent,
@@ -18,8 +19,8 @@ export function HeroSection({
   return (
     <>
       {HeroSectionContent ? (
-        <section className="w-full bg-gradient-to-r from-primary/90 to-cyan-600 py-12 md:py-24 lg:py-32 overflow-hidden">
-          <div className="container px-4 md:px-6">
+        <section className="w-full h-[90vh] bg-gradient-to-r from-primary/90 to-cyan-600 py-12 md:py-24 lg:py-32 overflow-hidden">
+          <div className="container px-4 md:px-6 md:mt-5">
             <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center ">
               <motion.div
                 className="space-y-4  flex flex-col items-center justify-center md:justify-start"
@@ -36,7 +37,7 @@ export function HeroSection({
                   {HeroSectionContent.title}
                 </motion.h1>
                 <motion.p
-                  className="max-w-[600px] text-white md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed text-center"
+                  className="max-w-[600px] text-white md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed text-center mb-4 md:mb-0"
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.4 }}
@@ -74,7 +75,7 @@ export function HeroSection({
                       variant="outline"
                       className="text-white border-white bg-transparent hover:bg-white/10"
                     >
-                      Learn More
+                      <Link href='/#services'>Learn More</Link>
                     </Button>
                   </motion.div>
                 </motion.div>

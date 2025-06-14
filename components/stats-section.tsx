@@ -71,10 +71,10 @@ const itemVariants = {
 
 export function StatsSection({statCardContent}:{statCardContent:StatCardType[] | undefined}) {
   return (
-    <section className="bg-teal-700 py-12 text-white relative overflow-hidden">
+    <section className="bg-slate-900 py-12 text-white relative overflow-hidden">
       {/* Background animation */}
       <motion.div
-        className="absolute inset-0 bg-gradient-to-r from-teal-600/50 to-cyan-500/50"
+        className="absolute inset-0 bg-gradient-to-b from-teal-600/50 to-cyan-500/50"
         animate={{
           backgroundPosition: ["0% 50%", "100% 50%", "0% 50%"],
         }}
@@ -87,7 +87,7 @@ export function StatsSection({statCardContent}:{statCardContent:StatCardType[] |
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 text-center"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center"
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"

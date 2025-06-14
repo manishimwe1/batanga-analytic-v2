@@ -103,7 +103,7 @@ const ServicesSection = ({services}:{services:ServicesType[] | undefined}) => {
                   >
                     <Button
                       variant="ghost"
-                      className="w-full justify-between group-hover:text-primary capitalize"
+                      className="w-full justify-between  group-hover:bg-yellow-500 group-hover:text-primary text-black capitalize"
                       onClick={()=>{
                         setselectedServices(service)
                         setopenModel(!openModel)
