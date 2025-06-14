@@ -28,14 +28,14 @@ const ServicesModel = ({
       }}
     >
       {/* <DialogTrigger>Open</DialogTrigger> */}
-      <DialogContent className="bg-slate-50">
+      <DialogContent className="bg-slate-50 overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-black text-lg text-center mb-4">{services?.cardTitle}</DialogTitle>
-          <DialogDescription className="text-pretty text-base text-black">
+          <DialogDescription className="text-balance text-justify text-base text-black">
             {services?.cardDescription}
           </DialogDescription>
         </DialogHeader>
-        <Button className="bg-cyan-600 hover:bg-cyan-700">
+        <Button className="bg-yellow-500 text-black hover:bg-yellow-600">
             <Link href={'/services'}>
               {services?.buttonText}
             </Link>
