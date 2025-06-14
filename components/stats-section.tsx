@@ -1,5 +1,6 @@
 "use client"
 
+import { StatCardType } from "@/types";
 import { motion, useInView } from "framer-motion"
 import { useRef, useEffect, useState } from "react"
 
@@ -68,7 +69,7 @@ const itemVariants = {
   },
 }
 
-export function StatsSection() {
+export function StatsSection({statCardContent}:{statCardContent:StatCardType[] | undefined}) {
   return (
     <section className="bg-teal-700 py-12 text-white relative overflow-hidden">
       {/* Background animation */}
@@ -92,7 +93,7 @@ export function StatsSection() {
           whileInView="visible"
           viewport={{ once: true, margin: "-50px" }}
         >
-          {stats.map((stat, index) => (
+          {statCardContent?.map((stat, index) => (
             <motion.div
               key={index}
               variants={itemVariants}
@@ -109,7 +110,7 @@ export function StatsSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
               >
-                <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+                <AnimatedCounter value={stat.number} suffix={index !== 0 ? '+':''} />
               </motion.div>
               <motion.div
                 className="text-lg opacity-90"
@@ -118,7 +119,7 @@ export function StatsSection() {
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: index * 0.1 + 0.3 }}
               >
-                {stat.label}
+                {stat.title}
               </motion.div>
             </motion.div>
           ))}

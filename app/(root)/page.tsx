@@ -1,6 +1,5 @@
 
 import AboutUsSection from "@/components/AboutUsSection";
-import Header from "@/components/Header";
 import ServicesSection from "@/components/ServicesSection";
 import StatCard from "@/components/StatCard";
 
@@ -8,8 +7,8 @@ import CTASection from "@/components/CTASection";
 import FeatureSections from "@/components/FeatureSections";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import { HeroSection } from "@/components/hero-section";
-import Footer from "@/components/footer";
 import { getAboutUs, getFeedback, getHeroSection, getServicesCard, getStatCard } from "@/sanity/getContent/homePage";
+import { StatsSection } from "@/components/stats-section";
 
 export default async function Home() {
   const HeroSectionContent = await getHeroSection()
@@ -30,7 +29,7 @@ export default async function Home() {
         <HeroSection HeroSectionContent={HeroSectionContent} />
 
         {/* Stats Section */}
-        <StatCard statCardContent={statCard} />
+        <StatsSection statCardContent={statCard} />
 
         {/* About Us Section */}
         <AboutUsSection aboutUs={aboutUs!} />

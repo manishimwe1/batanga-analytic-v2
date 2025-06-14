@@ -49,7 +49,7 @@ const StatCard = ({statCardContent}:{statCardContent:StatCardType[] | undefined}
                   stiffness: 200,
                 }}
               >
-                {stat.number}
+                {stat.number} {index !== 0 && '+'}
               </motion.h2>
               <p className="text-sm text-muted-foreground">{stat.title}</p>
             </motion.div>

@@ -1,9 +1,11 @@
 'use client'
 
+import { ServicesType } from "@/types";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { ChevronRight } from "lucide-react";
+import Link from "next/link";
+import { useEffect, useRef, useState } from "react";
 import { Button } from "./ui/button";
-import { BarChart3, ChevronRight, Database, Shield } from "lucide-react";
 import {
   Card,
   CardContent,
@@ -11,8 +13,7 @@ import {
   CardHeader,
   CardTitle,
 } from "./ui/card";
-import Link from "next/link";
-import { ServicesType } from "@/types";
+import ServicesModel from "./ServicesModel";
 
 const fadeInUp = {
   initial: { opacity: 0, y: 60 },
@@ -35,8 +36,11 @@ const staggerContainer = {
 };
 
 const ServicesSection = ({services}:{services:ServicesType[] | undefined}) => {
+  const [openModel, setopenModel] = useState(false)
+  const [selectedServices, setselectedServices] = useState<ServicesType | undefined>()
   const servicesRef = useRef(null);
   const servicesInView = useInView(servicesRef, { once: true });
+  
   return (
     <section
       ref={servicesRef}
@@ -87,7 +91,7 @@ const ServicesSection = ({services}:{services:ServicesType[] | undefined}) => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-sm text-muted-foreground line-clamp-3">
                     {service.cardDescription}
                   </p>
                 </CardContent>
@@ -100,8 +104,12 @@ const ServicesSection = ({services}:{services:ServicesType[] | undefined}) => {
                     <Button
                       variant="ghost"
                       className="w-full justify-between group-hover:text-primary capitalize"
+                      onClick={()=>{
+                        setselectedServices(service)
+                        setopenModel(!openModel)
+                      }}
                     >
-                     <Link href='/services' className="flex gap-2"> {service.buttonText} <ChevronRight className="h-4 w-4" /></Link>
+                     {service.buttonText} 
                     </Button>
                   </motion.div>
                 </CardFooter>
@@ -126,6 +134,7 @@ const ServicesSection = ({services}:{services:ServicesType[] | undefined}) => {
           </motion.div>
         </motion.div>
       </div>
+      <ServicesModel openModel={openModel} setIsOpen={setopenModel} services={selectedServices}/>
     </section>
   );
 };
