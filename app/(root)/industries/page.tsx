@@ -1,4 +1,5 @@
-'use client'
+"use client"
+
 import { SectionTitle } from "@/components/ui/section-title";
 import { Button } from "@/components/ui/button";
 import { IndustryCard } from "@/components/industry-card";

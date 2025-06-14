@@ -101,7 +101,7 @@ const ServicesSection = ({services}:{services:ServicesType[] | undefined}) => {
                       variant="ghost"
                       className="w-full justify-between group-hover:text-primary capitalize"
                     >
-                      {service.buttonText} <ChevronRight className="h-4 w-4" />
+                     <Link href='/services' className="flex gap-2"> {service.buttonText} <ChevronRight className="h-4 w-4" /></Link>
                     </Button>
                   </motion.div>
                 </CardFooter>

@@ -1,4 +1,5 @@
-import React from 'react';
+'use client'
+
 import { DotLottieReact } from '@lottiefiles/dotlottie-react';
 
 const App = () => {

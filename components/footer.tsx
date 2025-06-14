@@ -1,7 +1,7 @@
-'use client'
+"use client";
 import { useInView, motion } from "framer-motion";
 import { Instagram, Linkedin, Twitter } from "lucide-react";
-import  Link  from "next/link";
+import Link from "next/link";
 
 const staggerContainer = {
   initial: {},
@@ -61,7 +61,7 @@ const Footer = () => {
                       whileHover={{ x: 5, color: "#ffffff" }}
                     >
                       <Link
-                        href="#"
+                        href="/services"
                         className="hover:text-white transition-colors"
                       >
                         {service}
@@ -86,16 +86,30 @@ const Footer = () => {
               content: (
                 <div className="flex space-x-4">
                   {[
-                    { icon: Linkedin, href: "#" },
-                    { icon: Twitter, href: "#" },
-                    { icon: Instagram, href: "#" },
+                    {
+                      icon: Linkedin,
+                      href: "https://www.linkedin.com/in/niyomwungeri-pacifique-75b3a4322?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app",
+                    },
+                    {
+                      icon: Twitter,
+                      href: "https://x.com/BatangaAnalytic?t=SzgiMc4kKd0XbPCd9raIOw&s=09",
+                    },
+                    {
+                      icon: Instagram,
+                      href: "https://www.instagram.com/analy_tics22?igsh=YzljYTk1ODg3Zg==",
+                    },
                   ].map((social, index) => (
                     <motion.div
                       key={index}
                       whileHover={{ scale: 1.2, y: -2 }}
                       whileTap={{ scale: 0.9 }}
                     >
-                      <Link href={social.href} className="hover:text-white">
+                      <Link
+                        href={social.href}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:text-white"
+                      >
                         <social.icon className="h-5 w-5" />
                         <span className="sr-only">{social.icon.name}</span>
                       </Link>
@@ -122,7 +136,8 @@ const Footer = () => {
           transition={{ duration: 0.6, delay: 0.5 }}
           viewport={{ once: true }}
         >
-          © 2025 Batanga Analytics Ltd. All rights reserved.
+          © {new Date().getFullYear()} Batanga Analytics Ltd. All rights
+          reserved.
         </motion.div>
       </div>
     </motion.footer>
