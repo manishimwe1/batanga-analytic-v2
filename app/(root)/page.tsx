@@ -1,4 +1,3 @@
-
 import AboutUsSection from "@/components/AboutUsSection";
 import ServicesSection from "@/components/ServicesSection";
 import StatCard from "@/components/StatCard";
@@ -7,29 +6,28 @@ import CTASection from "@/components/CTASection";
 import FeatureSections from "@/components/FeatureSections";
 import TestimonialsSection from "@/components/TestimonialsSection";
 import { HeroSection } from "@/components/hero-section";
-import { getAboutUs, getFeedback, getHeroSection, getServicesCard, getStatCard } from "@/sanity/getContent/homePage";
-import { StatsSection } from "@/components/stats-section";
-
+import {
+  getAboutUs,
+  getFeedback,
+  getHeroSection,
+  getServicesCard,
+  getStatCard,
+} from "@/sanity/getContent/homePage";
 export default async function Home() {
-  const HeroSectionContent = await getHeroSection()
-  console.log(HeroSectionContent);
-  const statCard = await getStatCard()
-  console.log(statCard);
-  const aboutUs = await getAboutUs()
-  const services = await getServicesCard()
-  console.log(services);
-  const feedback = await getFeedback()
-  console.log(feedback);
-  
+  const HeroSectionContent = await getHeroSection();
+  const statCard = await getStatCard();
+  const aboutUs = await getAboutUs();
+  const services = await getServicesCard();
+  const feedback = await getFeedback();
+
   return (
     <div className="flex min-h-screen flex-col ">
-
       <main className="flex-1">
         {/* Hero Section */}
         <HeroSection HeroSectionContent={HeroSectionContent} />
 
         {/* Stats Section */}
-        <StatsSection statCardContent={statCard} />
+        <StatCard statCardContent={statCard} />
 
         {/* About Us Section */}
         <AboutUsSection aboutUs={aboutUs!} />
@@ -41,12 +39,11 @@ export default async function Home() {
         <FeatureSections />
 
         {/* Testimonials Section */}
-        <TestimonialsSection feedback={feedback}/>
+        <TestimonialsSection feedback={feedback} />
 
         {/* CTA Section */}
         <CTASection />
       </main>
-
     </div>
   );
 }

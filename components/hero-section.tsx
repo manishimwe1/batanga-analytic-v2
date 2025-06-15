@@ -19,17 +19,25 @@ export function HeroSection({
   return (
     <>
       {HeroSectionContent ? (
-        <section className="w-full h-[90vh] bg-gradient-to-r from-primary/90 to-cyan-600 py-12 md:py-24 lg:py-32 overflow-hidden">
-          <div className="container px-4 md:px-6 md:mt-5">
-            <div className="grid gap-6 lg:grid-cols-2 lg:gap-12 items-center ">
+        <section className="w-full h-full container px-4 md:px-6 md:mt-5  ">
+          <div className=" bg-[#212529] py-12 md:py-24 lg:py-32 overflow-hidden rounded-lg mt-4">
+            <div className="flex flex-col justify-between gap-6 lg:gap-12 items-center ">
               <motion.div
                 className="space-y-4  flex flex-col items-center justify-center md:justify-start"
                 initial={{ opacity: 0, x: -100 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, ease: "easeOut" }}
               >
+                <motion.p
+                  className="text-yellow-400 text-sm font-medium uppercase tracking-wider px-3 py-1 rounded-full bg-yellow-400/10 border border-yellow-400/20"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 1 }}
+                >
+                  🚀 analytic data company
+                </motion.p>
                 <motion.h1
-                  className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none text-white text-center"
+                  className="text-white text-center leading-tighter text-4xl font-semibold tracking-tight text-balance lg:leading-[1.1] lg:font-semibold xl:text-5xl xl:tracking-tighter"
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.2 }}
@@ -66,18 +74,6 @@ export function HeroSection({
                       Contact Us
                     </Button>
                   </motion.div>
-                  <motion.div
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    <Button
-                      size="lg"
-                      variant="outline"
-                      className="text-white border-white bg-transparent hover:bg-white/10"
-                    >
-                      <Link href='/#services'>Learn More</Link>
-                    </Button>
-                  </motion.div>
                 </motion.div>
               </motion.div>
               <motion.div
@@ -87,7 +83,7 @@ export function HeroSection({
                 transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
               >
                 <motion.div
-                  className="relative w-full max-w-md h-64 bg-gradient-to-br from-white/10 to-white/5 rounded-lg backdrop-blur-sm border border-white/20 flex items-center justify-center"
+                  className="relative w-full max-w-md h-full bg-gradient-to-br from-white/10 to-white/5 rounded-lg backdrop-blur-sm border border-white/20 flex items-center justify-center"
                   whileHover={{ scale: 1.05, rotate: 2 }}
                   transition={{ type: "spring", stiffness: 300, damping: 10 }}
                 >
@@ -101,12 +97,6 @@ export function HeroSection({
                         className="object-cover"
                       />
                     </motion.div>
-                    <motion.p
-                      className="text-white/80 text-sm"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ delay: 1 }}
-                    ></motion.p>
                   </div>
                 </motion.div>
               </motion.div>
