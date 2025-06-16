@@ -88,13 +88,13 @@ export function HeroSection({
                 whileHover={{ scale: 1.05, rotate: 2 }}
                 transition={{ type: "spring", stiffness: 300, damping: 10 }}
               >
-                <div className="text-center space-y-4 shadow-md shadow-blue-400 cursor-pointer w-full h-[350px] overflow-hidden rounded-xl relative border border-red-500">
+                <div className="text-center space-y-4 shadow-md shadow-black cursor-pointer w-full h-[360px] overflow-hidden rounded-xl relative ">
                   <Image
                     src={urlFor(HeroSectionContent.mainImage.asset).url()}
                     alt="image"
                     fill
                     priority
-                    className="object-contain"
+                    className="object-fill"
                   />
                 </div>
               </motion.div>
