@@ -88,13 +88,16 @@ export function HeroSection({
                 whileHover={{ scale: 1.05, rotate: 2 }}
                 transition={{ type: "spring", stiffness: 300, damping: 10 }}
               >
-                <div className="text-center space-y-4 shadow-md shadow-black cursor-pointer w-full h-[360px] overflow-hidden rounded-xl relative ">
+                <div className="text-center shadow-lg shadow-black/30 cursor-pointer w-full h-[400px] overflow-hidden rounded-2xl relative group hover:scale-[1.02] transition-transform duration-300">
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10" />
                   <Image
                     src={urlFor(HeroSectionContent.mainImage.asset).url()}
-                    alt="image"
+                    alt="Analytics Dashboard"
                     fill
                     priority
-                    className="object-fill"
+                    className="object-cover transform hover:scale-105 transition-transform duration-500 ease-in-out"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                    quality={90}
                   />
                 </div>
               </motion.div>
