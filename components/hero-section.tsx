@@ -20,7 +20,7 @@ export function HeroSection({
     <>
       {HeroSectionContent ? (
         <section className="w-full h-full container px-4 md:px-6 md:mt-5  ">
-          <div className=" h-screen w-full bg-[#212529] py-12 md:py-24 lg:py-32 overflow-hidden rounded-lg mt-4 flex flex-col ">
+          <div className=" h-full w-full bg-[#212529] pt-12 pb-4 md:pt-24 overflow-hidden rounded-lg mt-4 flex flex-col ">
             <div className="flex flex-col justify-between gap-6 lg:gap-12 items-center h-full ">
               <motion.div
                 className="space-y-4  flex flex-col items-center justify-center md:justify-start"
