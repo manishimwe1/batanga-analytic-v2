@@ -1,4 +1,4 @@
-'use client'
+"use client";
 
 import { ServicesType } from "@/types";
 import { motion, useInView } from "framer-motion";
@@ -35,12 +35,18 @@ const staggerContainer = {
   },
 };
 
-const ServicesSection = ({services}:{services:ServicesType[] | undefined}) => {
-  const [openModel, setopenModel] = useState(false)
-  const [selectedServices, setselectedServices] = useState<ServicesType | undefined>()
+const ServicesSection = ({
+  services,
+}: {
+  services: ServicesType[] | undefined;
+}) => {
+  const [openModel, setopenModel] = useState(false);
+  const [selectedServices, setselectedServices] = useState<
+    ServicesType | undefined
+  >();
   const servicesRef = useRef(null);
   const servicesInView = useInView(servicesRef, { once: true });
-  
+
   return (
     <section
       ref={servicesRef}
@@ -77,16 +83,13 @@ const ServicesSection = ({services}:{services:ServicesType[] | undefined}) => {
         >
           {services?.map((service, index) => (
             <motion.div key={index} variants={scaleIn}>
-              <Card className={`transition-all hover:shadow-lg border-l-4 cursor-pointer  h-full group ${index === 1 ? 'border-l-blue-500' :'border-l-yellow-500'}`}>
+              <Card
+                className={`transition-all hover:shadow-lg border-l-4 cursor-pointer  h-full group ${
+                  index % 2 === 0 ? "border-l-blue-500" : "border-l-yellow-500"
+                }`}
+              >
                 <CardHeader className="pb-2">
-                  {/* <motion.div
-                    className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4"
-                    whileHover={{ rotate: 360, scale: 1.1 }}
-                    transition={{ duration: 0.5 }}
-                  >
-                    <service.icon className="h-6 w-6 text-primary" />
-                  </motion.div> */}
-                  <CardTitle className="group-hover:text-primary transition-colors">
+                  <CardTitle className="group-hover:text-primary transition-colors line-clamp-1">
                     {service.cardTitle}
                   </CardTitle>
                 </CardHeader>
@@ -104,12 +107,12 @@ const ServicesSection = ({services}:{services:ServicesType[] | undefined}) => {
                     <Button
                       variant="ghost"
                       className="w-full justify-between  group-hover:bg-yellow-500 group-hover:text-primary text-black capitalize"
-                      onClick={()=>{
-                        setselectedServices(service)
-                        setopenModel(!openModel)
+                      onClick={() => {
+                        setselectedServices(service);
+                        setopenModel(!openModel);
                       }}
                     >
-                     {service.buttonText} 
+                      {service.buttonText}
                     </Button>
                   </motion.div>
                 </CardFooter>
@@ -127,14 +130,16 @@ const ServicesSection = ({services}:{services:ServicesType[] | undefined}) => {
         >
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Button className="bg-cyan-600 hover:bg-cyan-700">
-            <Link href={'/services'}>
-              View All Services
-            </Link>
+              <Link href={"/services"}>View All Services</Link>
             </Button>
           </motion.div>
         </motion.div>
       </div>
-      <ServicesModel openModel={openModel} setIsOpen={setopenModel} services={selectedServices}/>
+      <ServicesModel
+        openModel={openModel}
+        setIsOpen={setopenModel}
+        services={selectedServices}
+      />
     </section>
   );
 };

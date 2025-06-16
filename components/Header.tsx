@@ -5,6 +5,7 @@ import { Button } from "./ui/button";
 import { Database } from "lucide-react";
 import Link from "next/link";
 import MobileMenu from "./MobileMenu";
+import Image from "next/image";
 
 const Header = () => {
   return (
@@ -20,16 +21,15 @@ const Header = () => {
           whileHover={{ scale: 1.05 }}
           transition={{ type: "spring", stiffness: 400, damping: 10 }}
         >
-          <motion.div
-            className="w-10 h-10 rounded-lg bg-primary flex items-center justify-center"
-            whileHover={{ rotate: 360 }}
-            transition={{ duration: 0.5 }}
-          >
-            <Database className="h-6 w-6 text-white" />
-          </motion.div>
-          <span className="text-xl font-bold text-primary">
-            Batanga Analytics
-          </span>
+          <Image
+            src="/logo1.png"
+            alt="Company Logo"
+            className="object-contain w-auto h-8 md:h-10 transition-transform scale-150"
+            width={160}
+            height={40}
+            priority
+            quality={100}
+          />
         </motion.div>
         <nav className="hidden md:flex items-center gap-6">
           {["Home", "Services", "Industries", "Contact"].map((item, index) => (
@@ -64,8 +64,8 @@ const Header = () => {
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Button>Get Started</Button>
           </motion.div>
-          
-              <MobileMenu />
+
+          <MobileMenu />
         </motion.div>
       </div>
     </motion.header>

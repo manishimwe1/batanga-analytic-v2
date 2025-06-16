@@ -20,8 +20,8 @@ export function HeroSection({
     <>
       {HeroSectionContent ? (
         <section className="w-full h-full container px-4 md:px-6 md:mt-5  ">
-          <div className=" bg-[#212529] py-12 md:py-24 lg:py-32 overflow-hidden rounded-lg mt-4">
-            <div className="flex flex-col justify-between gap-6 lg:gap-12 items-center ">
+          <div className=" h-screen w-full bg-[#212529] py-12 md:py-24 lg:py-32 overflow-hidden rounded-lg mt-4 flex flex-col ">
+            <div className="flex flex-col justify-between gap-6 lg:gap-12 items-center h-full ">
               <motion.div
                 className="space-y-4  flex flex-col items-center justify-center md:justify-start"
                 initial={{ opacity: 0, x: -100 }}
@@ -76,31 +76,29 @@ export function HeroSection({
                   </motion.div>
                 </motion.div>
               </motion.div>
-              <motion.div
-                className="flex items-center justify-center"
-                initial={{ opacity: 0, x: 100, rotate: -10 }}
-                animate={{ opacity: 1, x: 0, rotate: 0 }}
-                transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
-              >
-                <motion.div
-                  className="relative w-full max-w-md h-full bg-gradient-to-br from-white/10 to-white/5 rounded-lg backdrop-blur-sm border border-white/20 flex items-center justify-center"
-                  whileHover={{ scale: 1.05, rotate: 2 }}
-                  transition={{ type: "spring", stiffness: 300, damping: 10 }}
-                >
-                  <div className="text-center space-y-4 shadow-md shadow-blue-400 cursor-pointer w-full h-[400px] overflow-hidden rounded-xl relative">
-                    <motion.div className="w-full  mx-auto bg-white/20  flex items-center justify-center  ">
-                      <Image
-                        src={urlFor(HeroSectionContent.mainImage.asset).url()}
-                        alt="image"
-                        fill
-                        priority
-                        className="object-cover"
-                      />
-                    </motion.div>
-                  </div>
-                </motion.div>
-              </motion.div>
             </div>
+            <motion.div
+              className="flex items-center justify-center w-full mt-10 px-2 lg:px-5"
+              initial={{ opacity: 0, x: 100, rotate: -10 }}
+              animate={{ opacity: 1, x: 0, rotate: 0 }}
+              transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
+            >
+              <motion.div
+                className="relative w-full border-spacing-2 h-full bg-gradient-to-br from-white/10 to-white/5 rounded-lg backdrop-blur-sm border border-white/20 flex items-center justify-center"
+                whileHover={{ scale: 1.05, rotate: 2 }}
+                transition={{ type: "spring", stiffness: 300, damping: 10 }}
+              >
+                <div className="text-center space-y-4 shadow-md shadow-blue-400 cursor-pointer w-full h-[350px] overflow-hidden rounded-xl relative border border-red-500">
+                  <Image
+                    src={urlFor(HeroSectionContent.mainImage.asset).url()}
+                    alt="image"
+                    fill
+                    priority
+                    className="object-contain"
+                  />
+                </div>
+              </motion.div>
+            </motion.div>
           </div>
         </section>
       ) : (
