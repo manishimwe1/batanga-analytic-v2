@@ -13,7 +13,7 @@ const Header = () => {
       initial={{ opacity: 0, y: -100 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+      className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur overflow-hidden supports-[backdrop-filter]:bg-background/60"
     >
       <div className="container flex h-16 items-center justify-between">
         <motion.div
@@ -21,15 +21,16 @@ const Header = () => {
           whileHover={{ scale: 1.05 }}
           transition={{ type: "spring", stiffness: 400, damping: 10 }}
         >
+          <div className=" w-[80px] h-[60px] relative ">
           <Image
             src="/logo1.png"
             alt="Company Logo"
-            className="object-contain w-auto h-8 md:h-10 transition-transform scale-150"
-            width={160}
-            height={40}
+            className="object-contain w-auto transition-transform scale-125 "
+            fill
             priority
             quality={100}
           />
+          </div>
         </motion.div>
         <nav className="hidden md:flex items-center gap-6">
           {["Home", "Services", "Industries", "Contact"].map((item, index) => (
@@ -58,11 +59,11 @@ const Header = () => {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.6, delay: 0.3 }}
         >
-          <Button variant="outline" className="hidden md:flex">
-            Log In
-          </Button>
+          
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Button>Get Started</Button>
+            <Button>
+              <Link href={'/started'}>Get Started</Link>
+            </Button>
           </motion.div>
 
           <MobileMenu />

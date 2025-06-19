@@ -4,14 +4,7 @@ export interface HeroSectionType {
     _type: 'heroSection'
     title: string
     subTitle: string
-    mainImage: {
-      _type: 'image'
-      alt: string
-      asset: {
-        _ref: string
-        _type: 'reference'
-      }
-    }
+    videoUrl:string
   }
   
 export interface StatCardType {
@@ -53,6 +46,20 @@ export interface AboutUs{
     title: string
     subTitle: string;
     addititionalContent: string;
+    image: {
+        _type: 'image'
+        alt: string
+        asset: {
+          _ref: string
+          _type: 'reference'
+        }
+      }
+}
+export interface FeatureType{
+    _id: string
+    _createdAt: string
+    title: string
+    description: string;
     image: {
         _type: 'image'
         alt: string

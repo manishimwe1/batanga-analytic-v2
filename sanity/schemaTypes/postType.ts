@@ -16,17 +16,18 @@ export const postType = defineType({
       type: 'string',
     }),
     defineField({
-      name: 'mainImage',
-      type: 'image',
+      name: 'mainVideo',
+      type: 'file',
+      title: 'Main Video',
       options: {
-        hotspot: true,
+        accept: 'video/*',
       },
       fields: [
         defineField({
           name: 'alt',
           type: 'string',
           title: 'Alternative text',
-        })
+        }),
       ]
     }),
     
@@ -35,7 +36,7 @@ export const postType = defineType({
     select: {
       title: 'title',
       author: 'author.name',
-      media: 'mainImage',
+      media: 'mainVideo',
     },
     prepare(selection) {
       const {author} = selection

@@ -34,7 +34,7 @@ export function HeroSection({
                   animate={{ opacity: 1 }}
                   transition={{ delay: 1 }}
                 >
-                  🚀 analytic data company
+                  🚀 Data science company
                 </motion.p>
                 <motion.h1
                   className="text-white text-center leading-tighter text-4xl font-semibold tracking-tight text-balance lg:leading-[1.1] lg:font-semibold xl:text-5xl xl:tracking-tighter"
@@ -78,28 +78,26 @@ export function HeroSection({
               </motion.div>
             </div>
             <motion.div
-              className="flex items-center justify-center w-full mt-10 px-2 lg:px-5"
+              className="flex items-center justify-center w-full mt-10 px-2 lg:px-20"
               initial={{ opacity: 0, x: 100, rotate: -10 }}
               animate={{ opacity: 1, x: 0, rotate: 0 }}
               transition={{ duration: 1, delay: 0.3, ease: "easeOut" }}
             >
               <motion.div
-                className="relative w-full border-spacing-2 h-full bg-gradient-to-br from-white/10 to-white/5 rounded-lg backdrop-blur-sm border border-white/20 flex items-center justify-center"
+                className="relative border-spacing-2 w-full h-[200px] lg:h-[400px] bg-gradient-to-br from-white/10 to-white/5 rounded-xl backdrop-blur-sm border border-white/20 flex items-center justify-center"
                 whileHover={{ scale: 1.05, rotate: 2 }}
                 transition={{ type: "spring", stiffness: 300, damping: 10 }}
               >
-                <div className="text-center shadow-lg shadow-black/30 cursor-pointer w-full h-[400px] overflow-hidden rounded-2xl relative group hover:scale-[1.02] transition-transform duration-300">
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent z-10" />
-                  <Image
-                    src={urlFor(HeroSectionContent.mainImage.asset).url()}
-                    alt="Analytics Dashboard"
-                    fill
-                    priority
-                    className="object-cover transform hover:scale-105 transition-transform duration-500 ease-in-out"
-                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                    quality={90}
+                <video
+                    src={HeroSectionContent.videoUrl}
+                    className="object-fill object-center w-full rounded-xl  h-full transform hover:scale-105 transition-transform duration-500 ease-in-out"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    controls={false} // set to true if you want controls
+                    // poster={HeroSectionContent.mainVideo.poster} // if you have a poster image
                   />
-                </div>
               </motion.div>
             </motion.div>
           </div>

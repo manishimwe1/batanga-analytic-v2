@@ -8,6 +8,7 @@ import TestimonialsSection from "@/components/TestimonialsSection";
 import { HeroSection } from "@/components/hero-section";
 import {
   getAboutUs,
+  getFeature,
   getFeedback,
   getHeroSection,
   getServicesCard,
@@ -19,7 +20,11 @@ export default async function Home() {
   const aboutUs = await getAboutUs();
   const services = await getServicesCard();
   const feedback = await getFeedback();
+  const features = await getFeature();
 
+  console.log(HeroSectionContent);
+  
+  
   return (
     <div className="flex min-h-screen flex-col ">
       <main className="flex-1">
@@ -36,7 +41,7 @@ export default async function Home() {
         <ServicesSection services={services} />
 
         {/* Featured Service Section */}
-        <FeatureSections />
+        <FeatureSections features={features}/>
 
         {/* Testimonials Section */}
         <TestimonialsSection feedback={feedback} />
