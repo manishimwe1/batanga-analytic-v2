@@ -7,7 +7,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { client } from "@/sanity/lib/client";
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "@/components/ui/button";
 import {
   Form,
@@ -21,16 +21,22 @@ import {
 import { Input } from "@/components/ui/input";
 
 import { z } from "zod";
+import { toast } from "sonner";
+import { useRouter } from "next/navigation";
 
 const formSchema = z.object({
   firstName: z.string().min(2).max(50),
   description: z.optional(z.string()),
   solution: z.optional(z.string()),
+  industry: z.optional(z.string()),
   LastName: z.string().min(2).max(50),
   email: z.string().email(),
 });
 
 const page = () => {
+  const router = useRouter()
+  const [check, setCheck] = useState(false);
+  const [newsletter, setNewsletter] = useState(false);
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -39,41 +45,48 @@ const page = () => {
       email: "",
       description: "",
       solution: "",
+      industry: "",
     },
   });
 
   // 2. Define a submit handler.
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
-    console.log(values);
-  }
-
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    if (check === false) {
+      return toast.error("please check the agreement box", {
+        richColors: true,
+      });
+    }
 
     const formData = {
       _type: "contactForm",
-      firstName,
-      lastName,
-      email,
-      solution,
-      industry,
-      message,
-      agreeTos,
-      agreeMarketing,
+      firstName: values.firstName,
+      lastName: values.LastName,
+      email: values.email,
+      solution: values.solution,
+      industry: values.industry,
+      message: values.description,
+      agreeTos: check,
+      agreeMarketing: newsletter,
       _createdAt: new Date().toISOString(),
     };
 
     try {
       const result = await client.create(formData);
-      console.log("Submitted to Sanity:", result);
-      alert("Form submitted successfully!");
+      // console.log("Submitted to Sanity:", result);
+      setCheck(false)
+      setNewsletter(false)
+      toast.success("Thank you for submit we will contact you soon", {
+        richColors: true,
+      });
+      router.push('/')
+      form.reset()
     } catch (error) {
       console.error("Sanity submission error:", error);
-      alert("There was an error submitting the form.");
+      toast.error("There was an error submitting the form.", {
+        richColors: true,
+      });
     }
-  };
+  }
 
   return (
     <div className="bg-white px-6 py-12 lg:px-20 flex flex-col md:flex-row items-center md:items-start justify-between gap-10">
@@ -159,7 +172,11 @@ const page = () => {
                       <span className="text-red-500">*</span>
                     </FormLabel>
                     <FormControl>
-                      <SelectComponents field={field} title="solution" />
+                      <SelectComponents
+                        value={field.value}
+                        onChange={field.onChange}
+                        title="solution"
+                      />
                     </FormControl>
 
                     <FormMessage />
@@ -168,20 +185,21 @@ const page = () => {
               />
             </div>
             <div>
-              <Label className="block font-medium text-sm mb-1">
-                
-              </Label>
+              <Label className="block font-medium text-sm mb-1"></Label>
               <FormField
                 control={form.control}
-                name="solution"
+                name="industry"
                 render={({ field }) => (
-                    <FormItem>
+                  <FormItem>
                     <FormLabel>
-                    Relevant industry <span className="text-red-500">*</span>
+                      Relevant industry <span className="text-red-500">*</span>
                     </FormLabel>
                     <FormControl>
-                      <SelectComponents field={field} title="industry" />
-                      
+                      <SelectComponents
+                        value={field.value}
+                        onChange={field.onChange}
+                        title="industry"
+                      />
                     </FormControl>
 
                     <FormMessage />
@@ -213,20 +231,27 @@ const page = () => {
           </div>
           <div className="space-y-3 flex flex-col items-start w-full">
             <div className="flex items-center gap-2 w-full justify-start">
-              <Checkbox />
-              <p className="text-sm">
-                I agree to batanga analytics{" "}
-                <a href="#" className="text-cyan-600 underline">
-                  Terms of Service
-                </a>
-              </p>
+              <div className="flex gap-1">
+                <Checkbox
+                  checked={check}
+                  onCheckedChange={() => setCheck(!check)}
+                />
+                <p className="text-sm">
+                  I agree to batanga analytics Terms of Service
+                </p>
+              </div>
             </div>
             <div className="flex items-start gap-2">
-              <Checkbox />
-              <p className="text-sm">
-                I agree to receive other commercial communications from batanga
-                analytics, including newsletters.
-              </p>
+              <div className="flex gap-1">
+                <Checkbox
+                  checked={newsletter}
+                  onCheckedChange={() => setNewsletter(!newsletter)}
+                />
+                <p className="text-sm">
+                  I agree to receive other commercial communications from
+                  batanga analytics, including newsletters.
+                </p>
+              </div>
             </div>
           </div>
           <Button

@@ -1,4 +1,6 @@
-export default {
+import { defineType } from "sanity";
+
+export const contactFormType = defineType({
   name: "contactForm",
   title: "Contact Form Submission",
   type: "document",
@@ -11,6 +13,6 @@ export default {
     { name: "message", type: "text", title: "Message" },
     { name: "agreeTos", type: "boolean", title: "Agreed to Terms" },
     { name: "agreeMarketing", type: "boolean", title: "Agreed to Marketing" },
-    { name: "_createdAt", type: "datetime", title: "Submitted At" },
+    { name: "createdAt", type: "datetime", title: "Submitted At" },
   ],
-};
+});

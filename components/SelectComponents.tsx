@@ -6,41 +6,68 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 
-import React from "react";
+import React, { Dispatch } from "react";
+import { ControllerRenderProps } from "react-hook-form";
 
-const SelectComponents = ({ field, title }: any) => {
+const SelectComponents = ({
+  
+  value,
+  onChange,
+  title,
+}: {
+
+  value?: string;
+  onChange: (value: string) => void;
+  title?: string;
+}) => {
+  const handleValueChange = (newValue: string) => {
+    onChange(newValue);
+  };
   return (
     <div className=" w-full">
-      <Select {...field}>
+      <Select value={value} onValueChange={handleValueChange}>
         <SelectTrigger className="w-full">
-          <SelectValue placeholder={title} />
+          <SelectValue placeholder="Please select" />
         </SelectTrigger>
         <SelectContent className="">
           {title === "solution" && (
             <>
               <SelectItem value="cybersecurity-services" className="w-full">
-              Cybersecurity Services
+                Cybersecurity Services
               </SelectItem>
               <SelectItem value="data-Analytics">Data Analytics</SelectItem>
               <SelectItem value="ai-solutions">AI Solutions </SelectItem>
-              <SelectItem value="custom-digital-solutions">Custom Digital Solutions</SelectItem>
+              <SelectItem value="custom-digital-solutions">
+                Custom Digital Solutions
+              </SelectItem>
               <SelectItem value="cloud-solutions">Cloud Solutions</SelectItem>
-              
             </>
           )}
-          {title === 'industry' && (
+          {title === "industry" && (
             <>
-            <SelectItem value="Telecommunications" className="w-full">
-            Telecommunications
-            </SelectItem>
-            <SelectItem value=" Banking-Finance"> Banking & Finance </SelectItem>
-            <SelectItem value="Insurance">Insurance</SelectItem>
-            <SelectItem value="Government-public-sector">Government & Public Sector</SelectItem>
-            <SelectItem value="Health-life-sciences"> Health & Life Sciences</SelectItem>
-            <SelectItem value="Retail-E-commerce">  Retail & E-commerce</SelectItem>
-            <SelectItem value="Energy-utilities-infrastructure">Energy, Utilities & Infrastructure</SelectItem>
-            
-          </>
+              <SelectItem value="Telecommunications" className="w-full">
+                Telecommunications
+              </SelectItem>
+              <SelectItem value=" Banking-Finance">
+                {" "}
+                Banking & Finance{" "}
+              </SelectItem>
+              <SelectItem value="Insurance">Insurance</SelectItem>
+              <SelectItem value="Government-public-sector">
+                Government & Public Sector
+              </SelectItem>
+              <SelectItem value="Health-life-sciences">
+                {" "}
+                Health & Life Sciences
+              </SelectItem>
+              <SelectItem value="Retail-E-commerce">
+                {" "}
+                Retail & E-commerce
+              </SelectItem>
+              <SelectItem value="Energy-utilities-infrastructure">
+                Energy, Utilities & Infrastructure
+              </SelectItem>
+            </>
           )}
         </SelectContent>
       </Select>

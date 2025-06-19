@@ -10,6 +10,7 @@ import { BarChart3, Loader2 } from "lucide-react";
 import { SanityDocument } from "next-sanity";
 import Image from "next/image";
 import Link from "next/link";
+import { Skeleton } from "./ui/skeleton";
 
 export function HeroSection({
   HeroSectionContent,
@@ -104,7 +105,7 @@ export function HeroSection({
         </section>
       ) : (
         <div>
-          <Loader2 className="animate-spin" />
+          <Skeleton className="h-40"/>
         </div>
       )}
     </>
