@@ -91,9 +91,9 @@ const page = () => {
   return (
     <div className="bg-white px-6 py-12 lg:px-20 flex flex-col md:flex-row items-center md:items-start justify-between gap-10">
       <h2 className="text-3xl md:text-4xl font-semibold md:text-left text-indigo-900 mb-8 text-center">
-        Let's talk about your <br className=" md:block" />
-        next big project.
+      Your next big move starts here.<br className=" md:block" /> Tell us what you need, and we’ll make it happen.
       </h2>
+        
 
       <Form {...form}>
         <form
@@ -185,8 +185,30 @@ const page = () => {
               />
             </div>
             <div>
-              <Label className="block font-medium text-sm mb-1"></Label>
-              <FormField
+              {
+                form.watch('solution') === 'training' ? (
+                  <FormField
+                control={form.control}
+                name="industry"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormLabel>
+                      Training category <span className="text-red-500">*</span>
+                    </FormLabel>
+                    <FormControl>
+                      <SelectComponents
+                        value={field.value}
+                        onChange={field.onChange}
+                        title="training"
+                      />
+                    </FormControl>
+
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
+                ):(
+                  <FormField
                 control={form.control}
                 name="industry"
                 render={({ field }) => (
@@ -206,6 +228,8 @@ const page = () => {
                   </FormItem>
                 )}
               />
+                )
+              }
             </div>
           </div>
           <div>
@@ -233,12 +257,13 @@ const page = () => {
             <div className="flex items-center gap-2 w-full justify-start">
               <div className="flex gap-1">
                 <Checkbox
+                  id="check"
                   checked={check}
                   onCheckedChange={() => setCheck(!check)}
                 />
-                <p className="text-sm">
+                <Label htmlFor="check" className="text-sm">
                   I agree to batanga analytics Terms of Service
-                </p>
+                </Label>
               </div>
             </div>
             <div className="flex items-start gap-2">

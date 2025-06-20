@@ -32,6 +32,9 @@ const SelectComponents = ({
         <SelectContent className="">
           {title === "solution" && (
             <>
+              <SelectItem value="training" className="w-full cursor-pointer">
+                Training
+              </SelectItem>
               <SelectItem value="cybersecurity-services" className="w-full">
                 Cybersecurity Services
               </SelectItem>
@@ -41,6 +44,17 @@ const SelectComponents = ({
                 Custom Digital Solutions
               </SelectItem>
               <SelectItem value="cloud-solutions">Cloud Solutions</SelectItem>
+            </>
+          )}
+          {title === "training" && (
+            <>
+              <SelectItem value="data-science" className="w-full cursor-pointer">
+                Data science
+              </SelectItem>
+              <SelectItem value="cybersecurity" className="w-full">
+                Cybersecurity 
+              </SelectItem>
+              
             </>
           )}
           {title === "industry" && (
