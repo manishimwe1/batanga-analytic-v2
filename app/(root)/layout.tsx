@@ -10,6 +10,7 @@ export const metadata: Metadata = {
   title: "batanga analytics",
   description: "Analytics & Cybersecurity Solutions",
   generator: "emino.dev",
+  icons:"/logo1.png"
 };
 
 export default function RootLayout({

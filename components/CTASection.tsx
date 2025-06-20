@@ -46,7 +46,7 @@ const CTASection = () => {
               >
                 <Button size="lg" className="bg-primary hover:bg-primary/90 text-white"
                 //@ts-ignore
-            onClick={() => window.location = "mailto:batangaanalytics@gmail.com"}
+            onClick={() => window.location.href = "mailto:support@batanganalytics.com"}
                 >
                   Contact Us Now
                 </Button>

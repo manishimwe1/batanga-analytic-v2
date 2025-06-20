@@ -66,11 +66,10 @@ export function HeroSection({
                   >
                     <Button
                       size="lg"
-                      className="bg-yellow-500 text-black hover:bg-yellow-400"
-                      onClick={() =>
-                        //@ts-ignore
-                        (window.location = "mailto:batangaanalytics@gmail.com")
-                      }
+                      className="bg-primary/90 text-white hover:bg-primary"
+                      onClick={() => {
+                        window.location.href = "mailto:support@batanganalytics.com";
+                      }}
                     >
                       Contact Us
                     </Button>

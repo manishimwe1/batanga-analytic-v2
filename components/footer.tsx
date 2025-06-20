@@ -76,8 +76,8 @@ const Footer = () => {
               content: (
                 <ul className="space-y-2 text-sm text-white/80">
                   <li>Kigali, Rwanda</li>
-                  <li>+250 783 749 339</li>
-                  <li>batangaanalytics@gmail.com</li>
+                  <li>support@batanganalytics.com</li>
+                  <li>+250 788 123 456</li>
                 </ul>
               ),
             },
