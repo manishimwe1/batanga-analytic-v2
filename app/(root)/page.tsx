@@ -14,6 +14,7 @@ import {
   getServicesCard,
   getStatCard,
 } from "@/sanity/getContent/homePage";
+import TrainingAcademy from "@/components/TrainingAcademy";
 export default async function Home() {
   const HeroSectionContent = await getHeroSection();
   const statCard = await getStatCard();
@@ -21,8 +22,6 @@ export default async function Home() {
   const services = await getServicesCard();
   const feedback = await getFeedback();
   const features = await getFeature();
-
-  console.log(HeroSectionContent);
   
   
   return (
@@ -41,8 +40,11 @@ export default async function Home() {
         <ServicesSection services={services} />
 
         {/* Featured Service Section */}
+
         <FeatureSections features={features}/>
 
+        {/* training academy Section */}
+        <TrainingAcademy/>
         {/* Testimonials Section */}
         <TestimonialsSection feedback={feedback} />
 

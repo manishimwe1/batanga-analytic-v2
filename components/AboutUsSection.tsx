@@ -7,6 +7,7 @@ import { Shield } from "lucide-react";
 import { AboutUs } from "@/types";
 import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
+import Link from "next/link";
 
 const AboutUsSection = ({aboutUs}:{aboutUs:AboutUs}) => {
   const {title,subTitle,addititionalContent,image} = aboutUs
@@ -59,7 +60,7 @@ const AboutUsSection = ({aboutUs}:{aboutUs:AboutUs}) => {
                   {addititionalContent}
                 </motion.p>
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="mt-5">
-                  <Button className="bg-primary hover:bg-primary/90">Learn More About Us</Button>
+                  <Link href={'/services'} className="bg-primary hover:bg-primary/90">Learn More About Us</Link>
                 </motion.div>
               </motion.div>
               <motion.div
