@@ -60,7 +60,10 @@ const AboutUsSection = ({aboutUs}:{aboutUs:AboutUs}) => {
                   {addititionalContent}
                 </motion.p>
                 <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }} className="mt-5">
-                  <Link href={'/services'} className="bg-primary hover:bg-primary/90">Learn More About Us</Link>
+                  <Button className="bg-primary hover:bg-primary/90 text-white">
+
+                  <Link href={'/services'} >Learn More About Us</Link>
+                  </Button>
                 </motion.div>
               </motion.div>
               <motion.div
