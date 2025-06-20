@@ -8,14 +8,8 @@ import Link from "next/link";
 const TrainingAcademy = () => {
   const [expanded, setExpanded] = useState(false);
   return (
-    <section className="flex flex-col items-center justify-center w-full py-12 md:py-24 bg-muted/50">
+    <section className="flex flex-col items-center justify-center w-full py-7 md:py-12 bg-muted/50">
       <div className="container px-4 md:px-6">
-        {/* <motion.div
-                  className="inline-block rounded-lg bg-primary/10 px-3 py-1 text-sm text-primary"
-                  whileHover={{ scale: 1.05 }}
-                >
-                  Training academy
-                </motion.div> */}
         <h2 className="text-xl lg:text-2xl font-bold tracking-tighter text-center text-primary">
           Batanga Analytics training Academy
         </h2>
@@ -37,7 +31,7 @@ const TrainingAcademy = () => {
         {!expanded ? (
           <Button
             onClick={() => setExpanded(true)}
-            className="bg-blue-900 text-white hover:bg-blue-800"
+            className="bg-primary/90 text-white hover:bg-primary"
           >
             Read More
           </Button>
@@ -194,17 +188,17 @@ const TrainingAcademy = () => {
               <Link href={'/started'} className="text-blue-800 underline underline-offset-4 mr-2">Apply Now</Link>
                 or email us on{" "}
                 <a
-                  href="mailto:academy@batangaanalytics.com"
+                  href="mailto:support@batanganalytics.com"
                   className="text-blue-800 underline"
                 >
-                  academy@batangaanalytics.com
+                  support@batanganalytics.com
                 </a>
               </p>
             </section>
             <div className="w-full flex items-center justify-center">
               <Button
                 onClick={() => setExpanded(!expanded)}
-                className="bg-blue-900 text-white hover:bg-blue-800"
+                className="bg-primary/90 text-white hover:bg-primary"
               >
                 Read less
               </Button>

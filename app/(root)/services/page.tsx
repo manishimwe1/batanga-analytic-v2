@@ -3,6 +3,7 @@ import { ServicesCard } from "@/components/services-card";
 import { SectionTitle } from "@/components/ui/section-title";
 import { Shield, Database, Server, Globe, Cloud, Code } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 export default function Services() {
   return (
@@ -114,7 +115,7 @@ export default function Services() {
             Ready to transform your business with data?
           </h2>
           <Button className="bg-batanga-darkblue hover:bg-batanga-oceanblue">
-            Get Started Today
+            <Link href={'/started'}>Get Started Today</Link>
           </Button>
         </div>
       </section>

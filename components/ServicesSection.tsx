@@ -129,7 +129,7 @@ const ServicesSection = ({
           transition={{ duration: 0.6, delay: 0.5 }}
         >
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
-            <Button className="bg-cyan-600 hover:bg-cyan-700">
+            <Button className="bg-yellow-500 hover:bg-yellow-600">
               <Link href={"/services"}>View All Services</Link>
             </Button>
           </motion.div>
