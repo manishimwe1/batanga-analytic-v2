@@ -14,6 +14,7 @@ import {
 import { FeatureType } from "@/types";
 import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
+import Autoplay from 'embla-carousel-autoplay';
 
 const fadeInRight = {
   initial: { opacity: 0, x: 60 },
@@ -45,7 +46,7 @@ const FeatureSections = ({
           Featured Service
         </motion.div>
       </div>
-      <Carousel className="w-full relative !px-0">
+      <Carousel className="w-full relative !px-0" plugins={[Autoplay({ delay: 3000, stopOnInteraction: false })]}>
         <CarouselContent className="w-full !px-0  !ml-0">
           {features ? (
             features.map((feature, index) => (
