@@ -9,12 +9,16 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
-import { motion, useInView } from "framer-motion";
+import { Navlink } from "@/constant";
+import { cn } from "@/lib/utils";
+import { motion } from "framer-motion";
 
 import { Menu } from "lucide-react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 const MobileMenu = () => {
+  const pathname = usePathname();
   return (
     <Sheet>
       <SheetTrigger className="border hover:scale-105 flex lg:hidden">
@@ -25,27 +29,31 @@ const MobileMenu = () => {
           <SheetTitle></SheetTitle>
           <SheetDescription></SheetDescription>
         </SheetHeader>
-        <nav className="flex flex-col items-center gap-6 w-full py-5">
-          {["Home", "Services", "Industries", "Contact"].map((item, index) => (
-              <Link
-              key={item}
-              href={
-                  item === "Home" ? "/" : `${item.toLowerCase().replace(" ", "")}`
-              }
-              className="text-lg font-medium transition-colors w-full hover:text-primary "
-              >
-                <SheetClose className="w-full">
+        <nav className="flex flex-col  items-start gap-2">
+          {Navlink.map((item, index) => {
+            const isActive = item.link === pathname;
+            return (
               <motion.div
+                className={cn("border w-full flex items-start rounded-md py-1 px-4",isActive && " bg-blue-100 w-full")}
+                key={item.label}
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
-                className="w-full  rounded-lg bg-cyan-900 capitalize text-white text-lg p-3 hover:bg-sky-950 cursor-pointer"
               >
-                {item}
+                  <Link
+                    href={item.link}
+                    className={cn(
+                      "text-sm font-medium transition-colors hover:text-blue-700",
+                      isActive && "text-blue-500"
+                    )}
+                  >
+                      <SheetClose className="items-start">
+                    {item.label}
+                </SheetClose>
+                  </Link>
               </motion.div>
-            </SheetClose>
-            </Link>
-          ))}
+            );
+          })}
         </nav>
       </SheetContent>
     </Sheet>
