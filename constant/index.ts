@@ -29,3 +29,11 @@ export const FeedBackConstant = [
       rating: 4,
     },
   ]
+
+export const Navlink = [
+  { label: "Home", link: "/" },
+  { label: "Services", link: "/services" },
+  { label: "Industries", link: "/industries" },
+  { label: "Contact", link: "/contact" },
+  { label: "Blog", link: "/blog" }
+]

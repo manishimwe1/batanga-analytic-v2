@@ -14,8 +14,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className="w-full h-full flex flex-col">
+    <html lang="en" suppressHydrationWarning>
+      <body className="w-full h-full flex flex-col" suppressHydrationWarning>
         <main>{children}</main>
       {/* <SanityLive/> */}
       </body>

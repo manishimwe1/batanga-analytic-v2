@@ -17,6 +17,9 @@ importers:
       '@lottiefiles/dotlottie-react':
         specifier: ^0.14.1
         version: 0.14.1(react@19.1.0)
+      '@portabletext/react':
+        specifier: ^3.2.1
+        version: 3.2.1(react@19.1.0)
       '@radix-ui/react-accordion':
         specifier: 1.2.2
         version: 1.2.2(@types/react-dom@18.3.7(@types/react@18.3.23))(@types/react@18.3.23)(react-dom@19.1.0(react@19.1.0))(react@19.1.0)

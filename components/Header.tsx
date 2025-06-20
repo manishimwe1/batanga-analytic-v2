@@ -6,6 +6,7 @@ import { Database } from "lucide-react";
 import Link from "next/link";
 import MobileMenu from "./MobileMenu";
 import Image from "next/image";
+import { Navlink } from "@/constant";
 
 const Header = () => {
   return (
@@ -33,22 +34,18 @@ const Header = () => {
           </div>
         </motion.div>
         <nav className="hidden md:flex items-center gap-6">
-          {["Home", "Services", "Industries", "Contact"].map((item, index) => (
+          {Navlink.map((item, index) => (
             <motion.div
-              key={item}
+              key={item.label}
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
             >
               <Link
-                href={
-                  item === "Home"
-                    ? "/"
-                    : `${item.toLowerCase().replace(" ", "")}`
-                }
+                href={item.link}
                 className="text-sm font-medium transition-colors hover:text-primary"
               >
-                {item}
+                {item.label}
               </Link>
             </motion.div>
           ))}

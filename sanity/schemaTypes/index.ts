@@ -8,7 +8,8 @@ import { servicesType } from './servicesCardType'
 import { feedbackType } from './feedbackType'
 import { featureType } from './featureType'
 import { contactFormType } from './formSubmit'
+import {blogPostType} from './blogPostType'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [servicesType,feedbackType, statCardType, postType, aboutType,featureType,contactFormType],
+  types: [blockContentType, servicesType, feedbackType, statCardType, postType, aboutType, featureType, contactFormType, blogPostType],
 }

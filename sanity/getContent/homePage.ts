@@ -98,3 +98,25 @@ export const getHeroSection = async()=>{
         
     }
 }
+
+export const getBlogPost = async () => {
+    try {
+        const data = await client.fetch(
+            groq`*[_type == "blogPost"]|order(date desc){
+                _id,
+                title,
+                description,
+                image,
+                date,
+                author,
+                slug,
+                content
+            }`,
+            {},
+            options
+        );
+        return data;
+    } catch (error) {
+        console.log(error, 'ERROR IN GETTING BLOG POSTS');
+    }
+}

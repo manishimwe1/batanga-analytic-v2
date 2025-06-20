@@ -105,7 +105,7 @@ export function HeroSection({
         </section>
       ) : (
         <div>
-          <Skeleton className="h-40"/>
+          <Skeleton className="h-40 w-full"/>
         </div>
       )}
     </>
