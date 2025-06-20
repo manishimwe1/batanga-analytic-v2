@@ -7,8 +7,12 @@ import Link from "next/link";
 import MobileMenu from "./MobileMenu";
 import Image from "next/image";
 import { Navlink } from "@/constant";
+import { usePathname } from "next/navigation";
+import { link } from "fs";
+import { cn } from "@/lib/utils";
 
 const Header = () => {
+  const pathname = usePathname()
   return (
     <motion.header
       initial={{ opacity: 0, y: -100 }}
@@ -34,8 +38,10 @@ const Header = () => {
           </div>
         </motion.div>
         <nav className="hidden md:flex items-center gap-6">
-          {Navlink.map((item, index) => (
-            <motion.div
+          {Navlink.map((item, index) => {
+            const isActive = item.link === pathname 
+            return(
+              <motion.div
               key={item.label}
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -43,12 +49,13 @@ const Header = () => {
             >
               <Link
                 href={item.link}
-                className="text-sm font-medium transition-colors hover:text-primary"
+                className={cn("text-sm font-medium transition-colors hover:text-blue-700",isActive && 'text-blue-500')}
               >
                 {item.label}
               </Link>
             </motion.div>
-          ))}
+            )
+})}
         </nav>
         <motion.div
           className="flex items-center gap-4"
