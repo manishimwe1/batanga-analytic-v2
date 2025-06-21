@@ -50,7 +50,9 @@ export default async function Home() {
         <TestimonialsSection feedback={feedback} />
 
         <div className="flex items-center w-full py-10 justify-center">
-          <Button className="bg-yellow-500 hover:bg-yellow-600 text-black"><Link href={'/started'}>Reques Demo</Link></Button>
+          <Button className="bg-yellow-500 hover:bg-yellow-600 text-black">
+            <Link href={"/started"}>Request Demo</Link>
+          </Button>
         </div>
         {/* CTA Section */}
         <CTASection />
