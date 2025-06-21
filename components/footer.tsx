@@ -77,7 +77,7 @@ const Footer = () => {
                 <ul className="space-y-2 text-sm text-white/80">
                   <li>Kigali, Rwanda</li>
                   <li>support@batanganalytics.com</li>
-                  <li>+250 788 123 456</li>
+                  <li>+250783749339</li>
                 </ul>
               ),
             },
