@@ -15,6 +15,7 @@ import {
   getStatCard,
 } from "@/sanity/getContent/homePage";
 import TrainingAcademy from "@/components/TrainingAcademy";
+import { Button } from "@/components/ui/button";
 export default async function Home() {
   const HeroSectionContent = await getHeroSection();
   const statCard = await getStatCard();
@@ -22,8 +23,7 @@ export default async function Home() {
   const services = await getServicesCard();
   const feedback = await getFeedback();
   const features = await getFeature();
-  
-  
+
   return (
     <div className="flex min-h-screen flex-col ">
       <main className="flex-1">
@@ -41,13 +41,16 @@ export default async function Home() {
 
         {/* Featured Service Section */}
 
-        <FeatureSections features={features}/>
+        <FeatureSections features={features} />
 
         {/* training academy Section */}
-        <TrainingAcademy/>
+        <TrainingAcademy />
         {/* Testimonials Section */}
         <TestimonialsSection feedback={feedback} />
 
+        <div className="flex items-center w-full justify-center">
+          <Button className="bg-yellow-500 text-black">Reques Demo</Button>
+        </div>
         {/* CTA Section */}
         <CTASection />
       </main>
