@@ -16,6 +16,7 @@ import {
 } from "@/sanity/getContent/homePage";
 import TrainingAcademy from "@/components/TrainingAcademy";
 import { Button } from "@/components/ui/button";
+import Link from "next/link";
 export default async function Home() {
   const HeroSectionContent = await getHeroSection();
   const statCard = await getStatCard();
@@ -49,7 +50,7 @@ export default async function Home() {
         <TestimonialsSection feedback={feedback} />
 
         <div className="flex items-center w-full py-10 justify-center">
-          <Button className="bg-yellow-500 text-black">Reques Demo</Button>
+          <Button className="bg-yellow-500 hover:bg-yellow-600 text-black"><Link href={'/started'}>Reques Demo</Link></Button>
         </div>
         {/* CTA Section */}
         <CTASection />
